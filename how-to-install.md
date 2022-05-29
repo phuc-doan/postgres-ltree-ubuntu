@@ -4,7 +4,7 @@
 
 ```
 sudo apt update
-sudo apt -y install vim bash-completion wget
+sudo apt -y install curl vim bash-completion wget
 sudo apt -y upgrade
 ```
 
