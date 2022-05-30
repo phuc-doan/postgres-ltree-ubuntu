@@ -75,6 +75,10 @@ systemctl status postgresql.service
 apt install  python3 wget git byobu telnet -y
 apt-get install libreadline-dev
 apt-get install zlib1g-dev
+
+```
+- Thêm gói build-essential để trình biên dịch C được chấp nhận trong **``$ PATH``** trong Linux Ubuntu
+```
 apt -y install build-essential
 ```
  
