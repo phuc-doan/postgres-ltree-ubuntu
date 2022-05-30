@@ -38,9 +38,9 @@ pgadmin packages
 
 ## Step3: Cài đặt PostgreSQL 12 trên Ubuntu 22.04 | 20.04 | 18.04 | 16.04
 
-- Bây giờ kho lưu trữ đã được thêm thành công, hãy cập nhật danh sách gói và cài đặt các gói máy chủ và ứng dụng khách PostgreSQL 12 trên hệ thống Linux Ubuntu 22.04 / 20.04 / 18.04 / 16.04 của bạn.
+- Bây giờ kho lưu trữ đã được thêm thành công, hãy cập nhật danh sách gói và cài đặt các gói máy chủ và ứng dụng khách PostgreSQL 12 trên Ubuntu 22.04 / 20.04 / 18.04 / 16.04 của bạn.
 ```
- sudo apt-get update
+sudo apt-get update
 
 sudo apt -y install postgresql-12 postgresql-client-12
 
@@ -51,14 +51,14 @@ sudo apt -y install postgresql-12 postgresql-client-12
 
 ``` 
 systemctl enable postgresql
- systemctl status postgresql.service
+systemctl status postgresql.service
 ```
 
 ### Kết quả các bước trên sau khi thành công trông như sau:
 
 ![image](https://user-images.githubusercontent.com/83824403/170861785-d5696542-2c49-4aff-af68-1100fef6e6c0.png)
 
-## Enable Ltree extenson
+## Enable **Ltree extenson**
 
 ## Step 1: cài các gói cần thiết
 
@@ -71,7 +71,8 @@ apt-get install zlib1g-dev
 apt -y install build-essential
 ```
  
-## Step2: Git clone thư mục code về và chuyển sang nhánh vltree-12
+## Step2: Git clone thư mục code về và chuyển sang nhánh vltree-12 sau đó chạy script
+
 
 ```
 git clone https://github.com/bizflycloud/postgres.git
@@ -101,7 +102,7 @@ make
 ![image](https://user-images.githubusercontent.com/83824403/170914428-5ceabe3f-37c9-4a03-a6e6-f3fe95ce5829.png)
 
 
-- COPY ltree.so,... sang /postgres/lib và /postgres/extension của ubuntu
+- COPY `ltree.so`,... sang ``/postgres/lib`` và ``/postgres/extension`` của ubuntu
 
 ```
 cp ltree.so /usr/lib/postgres/12/lib
@@ -143,17 +144,17 @@ postgres=# \dx
 ![image](https://user-images.githubusercontent.com/83824403/170915079-52d88c1b-1462-4b33-a3a0-0cac333fcee2.png)
 
 
-- Sửa bind IP trong file cấu hình /var/lib/pgsql/12/data/pg_hba.conf thành :
+- Sửa bind IP trong file cấu hình ``/var/lib/pgsql/12/data/pg_hba.conf`` thành :
 ```
 # IPv4 local connections:
 host    all             all             0.0.0.0/0               md5
 ```
 
 
-- Sửa listen IP trong file cấu hình /var/lib/pgsql/12/data/postgresql.conf thành :
-
-# - Connection Settings -
+- Sửa listen IP trong file cấu hình ``/var/lib/pgsql/12/data/postgresql.conf`` thành :
 ```
+# - Connection Settings -
+
 listen_addresses = '*'
 
 ```
@@ -180,13 +181,13 @@ postgres=# insert into item(id, item_name) values (1, 'home/opt/abc');
 
 # Reference + Fix bug
 ## Reference
-https://git.paas.vn/backup-service/endeavour/-/blob/staging/docs/install-step-by-step.md
+- https://git.paas.vn/backup-service/endeavour/-/blob/staging/docs/install-step-by-step.md
 
 ## fix bug
-http://www.dark-hamster.com/operating-system/how-to-solve-source-compile-error-configure-error-no-acceptable-c-compiler-found-in-path-in-linux-ubuntu/?fbclid=IwAR3Vdp6fDOEpwdcBAHvQIJYEA6zpo87yG3T9FcwJ95R1-mB_IfpYwTsI_UY
-https://askubuntu.com/questions/89389/how-to-solve-configure-error-readline-library-not-found
-https://askubuntu.com/questions/1169754/configure-error-could-not-find-the-zlib-library
-https://geeksww.com/tutorials/miscellaneous/bison_gnu_parser_generator/installation/installing_bison_gnu_parser_generator_ubuntu_linux.php
+- http://www.dark-hamster.com/operating-system/how-to-solve-source-compile-error-configure-error-no-acceptable-c-compiler-found-in-path-in-linux-ubuntu/?fbclid=IwAR3Vdp6fDOEpwdcBAHvQIJYEA6zpo87yG3T9FcwJ95R1-mB_IfpYwTsI_UY
+- https://askubuntu.com/questions/89389/how-to-solve-configure-error-readline-library-not-found
+- https://askubuntu.com/questions/1169754/configure-error-could-not-find-the-zlib-library
+- https://geeksww.com/tutorials/miscellaneous/bison_gnu_parser_generator/installation/installing_bison_gnu_parser_generator_ubuntu_linux.php
 
 
 
