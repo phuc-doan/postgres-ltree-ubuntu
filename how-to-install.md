@@ -1,6 +1,6 @@
 ## Cài postgresql & Ltree extension trên ubuntu 18
 
-## Step1: Cài các gói lân cận cần thiết
+### Step1: Cài các gói lân cận cần thiết
 
 ```
 sudo apt update
@@ -10,7 +10,7 @@ sudo apt -y upgrade
 
 ### Step2: Add PostgreSQL 12 repository
 
-- Cần nhập khóa GPG và thêm kho lưu trữ PostgreSQL 12 vào máy Ubuntu của chúng ta. Chạy các lệnh sau để thực hiện điều này.
+- Cần nhập GPG key và thêm kho lưu trữ PostgreSQL 12 vào máy Ubuntu của chúng ta. Chạy các lệnh sau để thực hiện điều này.
 
 ```
 curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
@@ -25,20 +25,22 @@ echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" 
 - Kho lưu trữ được thêm vào chứa nhiều gói khác nhau bao gồm các phần bổ trợ của bên thứ ba. Chúng bao gồm:
 
 ```
-postgresql-client
+- postgresql-client
 
-postgresql
+- postgresql
 
-libpq-dev
+- libpq-dev
 
-postgresql-server-dev
+- postgresql-server-dev
 
-pgadmin packages
+- pgadmin packages
 ```
 
 ## Step3: Cài đặt PostgreSQL 12 trên Ubuntu 22.04 | 20.04 | 18.04 | 16.04
 
 - Bây giờ kho lưu trữ đã được thêm thành công, hãy cập nhật danh sách gói và cài đặt các gói máy chủ và ứng dụng khách PostgreSQL 12 trên Ubuntu 22.04 / 20.04 / 18.04 / 16.04 của bạn.
+
+
 ```
 sudo apt-get update
 
@@ -54,15 +56,20 @@ systemctl enable postgresql
 systemctl status postgresql.service
 ```
 
-### Kết quả các bước trên sau khi thành công trông như sau:
+
+
+### Kết quả các bước trên sau khi thành công sẽ như sau:
 
 ![image](https://user-images.githubusercontent.com/83824403/170861785-d5696542-2c49-4aff-af68-1100fef6e6c0.png)
+
+
+
 
 ## Enable **Ltree extenson**
 
 ## Step 1: cài các gói cần thiết
 
-- GNU readline là một thư viện phần mềm cung cấp khả năng chỉnh sửa dòng và lịch sử cho các chương trình tương tác với giao diện dòng lệnh.
+- **GNU readline** là một thư viện phần mềm cung cấp khả năng chỉnh sửa dòng và lịch sử cho các chương trình tương tác với giao diện dòng lệnh.
 
 ```
 apt install  python3 wget git byobu telnet -y
@@ -86,6 +93,8 @@ Sau khi chạy scrip sẽ như sau:
 
 
 ## Step3: cài bison và cài đặt bison (GNU Parser Generator)
+
+
 ```
 apt-get install flex bison
 cd contrib/ltree
