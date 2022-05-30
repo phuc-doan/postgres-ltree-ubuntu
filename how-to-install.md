@@ -62,10 +62,127 @@ systemctl enable postgresql
 
 ## Step 1: cài các gói cần thiết
 
+- GNU readline là một thư viện phần mềm cung cấp khả năng chỉnh sửa dòng và lịch sử cho các chương trình tương tác với giao diện dòng lệnh.
+
 ```
-sudo apt install  python3 wget git byobu telnet -y
+apt install  python3 wget git byobu telnet -y
+apt-get install libreadline-dev
+apt-get install zlib1g-dev
+apt -y install build-essential
+```
+ 
+## Step2: Git clone thư mục code về và chuyển sang nhánh vltree-12
+
+```
+git clone https://github.com/bizflycloud/postgres.git
+cd postgres && git checkout vltree-12
+./configure
 ```
 
+Sau khi chạy scrip sẽ như sau:
+
+![image](https://user-images.githubusercontent.com/83824403/170914056-b260f286-ea7b-4782-a427-4cd2db48b4b1.png)
+
+
+## Step3: cài bison và cài đặt bison (GNU Parser Generator)
+```
+apt-get install flex bison
+cd contrib/ltree
+PATH=$PATH:/usr/local/m4/bin/
+cd ..
+cd ..
+./configure --prefix=/root/postgres/contrib/ltree --with-libiconv-prefix=/usr/local/libiconv/
+cd contrib/ltree
+make
+```
+ - Sau khi chajy script sẽ như sau
+
+
+![image](https://user-images.githubusercontent.com/83824403/170914428-5ceabe3f-37c9-4a03-a6e6-f3fe95ce5829.png)
+
+
+- COPY ltree.so,... sang /postgres/lib và /postgres/extension của ubuntu
+
+```
+cp ltree.so /usr/lib/postgres/12/lib
+cp ltree.control ltree--1.0--1.1.sql ltree--1.1.sql ltree--unpackaged--1.0.sql /usr/share/postgres/12/extension/
+```
+
+
+## Step 4: test
+- Truy cập postgre shell:
+
+```
+sudo -u postgres psql
+```
+- Set password cho user postgres:
+
+```
+postgres=# \password postgres
+```
+- Tạo Db test và Kiểm tra các database đang có :
+```
+postgres=# \l
+```
+
+![image](https://user-images.githubusercontent.com/83824403/170914963-a885bc9d-25a1-4996-a787-5c75c7211710.png)
+
+
+
+- Khởi tạo các extension :
+```
+postgres=# create extension ltree;
+postgres=# create extension "uuid-ossp";
+```
+
+- Kiểm tra lại các extension đã được cài đặt :
+```
+postgres=# \dx
+```
+
+![image](https://user-images.githubusercontent.com/83824403/170915079-52d88c1b-1462-4b33-a3a0-0cac333fcee2.png)
+
+
+- Sửa bind IP trong file cấu hình /var/lib/pgsql/12/data/pg_hba.conf thành :
+```
+# IPv4 local connections:
+host    all             all             0.0.0.0/0               md5
+```
+
+
+- Sửa listen IP trong file cấu hình /var/lib/pgsql/12/data/postgresql.conf thành :
+
+# - Connection Settings -
+```
+listen_addresses = '*'
+
+```
+
+- Khởi động lại dịch vụ :
+```
+
+systemctl restart postgresql-12
+```
+- Test extension ltree. Tạo DB test -> enable extension ltree -> create table vs type ltree -> insert test.
+
+```
+
+postgres=# create extension ltree;
+postgres=# CREATE TABLE item(id int,item_name ltree,PRIMARY KEY(id ));
+postgres=# insert into item(id, item_name) values (1, 'home/opt/abc');
+```
+### Kết quả như sau 
+
+![image](https://user-images.githubusercontent.com/83824403/170915342-cdbb4778-0e60-4ad9-ac61-f81f513503db.png)
+
+
+
+
+# Reference + Fix bug
+## Reference
+https://git.paas.vn/backup-service/endeavour/-/blob/staging/docs/install-step-by-step.md
+
+## fix bug
 http://www.dark-hamster.com/operating-system/how-to-solve-source-compile-error-configure-error-no-acceptable-c-compiler-found-in-path-in-linux-ubuntu/?fbclid=IwAR3Vdp6fDOEpwdcBAHvQIJYEA6zpo87yG3T9FcwJ95R1-mB_IfpYwTsI_UY
 https://askubuntu.com/questions/89389/how-to-solve-configure-error-readline-library-not-found
 https://askubuntu.com/questions/1169754/configure-error-could-not-find-the-zlib-library
