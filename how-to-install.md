@@ -103,8 +103,9 @@ Sau khi chạy scrip sẽ như sau:
 apt-get install flex bison
 cd contrib/ltree
 PATH=$PATH:/usr/local/m4/bin/
-cd ..
-cd ..
+
+cd /root/postgres/
+
 ./configure --prefix=/root/postgres/contrib/ltree --with-libiconv-prefix=/usr/local/libiconv/
 cd contrib/ltree
 make
@@ -118,8 +119,8 @@ make
 - COPY `ltree.so`,... sang ``/postgres/lib`` và ``/postgres/extension`` của ubuntu
 
 ```
-cp ltree.so /usr/lib/postgres/12/lib
-cp ltree.control ltree--1.0--1.1.sql ltree--1.1.sql ltree--unpackaged--1.0.sql /usr/share/postgres/12/extension/
+cp ltree.so /usr/lib/postgresql/12/lib
+cp ltree.control ltree--1.0--1.1.sql ltree--1.1.sql ltree--unpackaged--1.0.sql /usr/share/postgresql/12/extension/
 ```
 
 
