@@ -181,7 +181,7 @@ systemctl restart postgresql-12
 - Test extension ltree. Tạo DB test -> enable extension ltree -> create table vs type ltree -> insert test.
 
 ```
-
+postgres=# create database test;
 postgres=# create extension ltree;
 postgres=# CREATE TABLE item(id int,item_name ltree,PRIMARY KEY(id ));
 postgres=# insert into item(id, item_name) values (1, 'home/opt/abc');
