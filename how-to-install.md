@@ -1,4 +1,4 @@
-## Cài postgresql & Ltree extension trên ubuntu 18
+## Cài postgresql & Ltree extension trên Ubuntu 18.04
 
 ### Step1: Cài các gói lân cận cần thiết
 
@@ -67,7 +67,7 @@ systemctl status postgresql.service
 
 ## Enable **Ltree extenson**
 
-## Step 1: cài các gói cần thiết
+### Step 1: cài các gói cần thiết
 
 - **GNU readline** là một thư viện phần mềm cung cấp khả năng chỉnh sửa dòng và lịch sử cho các chương trình tương tác với giao diện dòng lệnh.
 
@@ -78,7 +78,7 @@ apt-get install zlib1g-dev
 apt -y install build-essential
 ```
  
-## Step2: Git clone thư mục code về và chuyển sang nhánh vltree-12 sau đó chạy script
+### Step2: Git clone thư mục code về và chuyển sang nhánh vltree-12 sau đó chạy script
 
 
 ```
@@ -92,7 +92,7 @@ Sau khi chạy scrip sẽ như sau:
 ![image](https://user-images.githubusercontent.com/83824403/170914056-b260f286-ea7b-4782-a427-4cd2db48b4b1.png)
 
 
-## Step3: cài bison và cài đặt bison (GNU Parser Generator)
+### Step3: cài bison và cài đặt bison (GNU Parser Generator)
 
 
 ```
@@ -119,7 +119,7 @@ cp ltree.control ltree--1.0--1.1.sql ltree--1.1.sql ltree--unpackaged--1.0.sql /
 ```
 
 
-## Step 4: test
+### Step 4: test
 - Truy cập postgre shell:
 
 ```
@@ -153,14 +153,14 @@ postgres=# \dx
 ![image](https://user-images.githubusercontent.com/83824403/170915079-52d88c1b-1462-4b33-a3a0-0cac333fcee2.png)
 
 
-- Sửa bind IP trong file cấu hình ``/var/lib/pgsql/12/data/pg_hba.conf`` thành :
+- Sửa bind IP trong file cấu hình ``/etc/postgres/12/main/pg_hba.conf`` thành :
 ```
 # IPv4 local connections:
 host    all             all             0.0.0.0/0               md5
 ```
 
 
-- Sửa listen IP trong file cấu hình ``/var/lib/pgsql/12/data/postgresql.conf`` thành :
+- Sửa listen IP trong file cấu hình ``/etc/postgres/12/main/postgresql.conf`` thành :
 ```
 # - Connection Settings -
 
@@ -189,6 +189,7 @@ postgres=# insert into item(id, item_name) values (1, 'home/opt/abc');
 
 
 # Reference + Fix bug
+
 ## Reference
 - https://git.paas.vn/backup-service/endeavour/-/blob/staging/docs/install-step-by-step.md
 
