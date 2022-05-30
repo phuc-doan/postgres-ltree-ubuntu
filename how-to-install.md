@@ -1,4 +1,4 @@
-## Cài postgresql+ltree extension trên ubuntu 18
+## Cài postgresql & Ltree extension trên ubuntu 18
 
 ## Step1: Cài các gói lân cận cần thiết
 
