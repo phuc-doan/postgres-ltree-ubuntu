@@ -36,7 +36,7 @@ echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" 
 - pgadmin packages
 ```
 
-## Step3: Cài đặt PostgreSQL 12 trên Ubuntu 22.04 | 20.04 | 18.04 | 16.04
+### Step3: Cài đặt PostgreSQL 12 trên Ubuntu 22.04 | 20.04 | 18.04 | 16.04
 
 - Bây giờ kho lưu trữ đã được thêm thành công, hãy cập nhật danh sách gói và cài đặt các gói máy chủ và ứng dụng khách PostgreSQL 12 trên Ubuntu 22.04 / 20.04 / 18.04 / 16.04 của bạn.
 
@@ -119,7 +119,7 @@ cp ltree.control ltree--1.0--1.1.sql ltree--1.1.sql ltree--unpackaged--1.0.sql /
 ```
 
 
-### Step 4: test
+### Step 4: Test
 - Truy cập postgre shell:
 
 ```
@@ -197,6 +197,7 @@ postgres=# insert into item(id, item_name) values (1, 'home/opt/abc');
 - http://www.dark-hamster.com/operating-system/how-to-solve-source-compile-error-configure-error-no-acceptable-c-compiler-found-in-path-in-linux-ubuntu/?fbclid=IwAR3Vdp6fDOEpwdcBAHvQIJYEA6zpo87yG3T9FcwJ95R1-mB_IfpYwTsI_UY
 - https://askubuntu.com/questions/89389/how-to-solve-configure-error-readline-library-not-found
 - https://askubuntu.com/questions/1169754/configure-error-could-not-find-the-zlib-library
+- https://askubuntu.com/questions/557629/how-to-install-flex-and-bison-error-can-not-locate-file
 - https://geeksww.com/tutorials/miscellaneous/bison_gnu_parser_generator/installation/installing_bison_gnu_parser_generator_ubuntu_linux.php
 
 
